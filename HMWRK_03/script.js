@@ -121,7 +121,7 @@ order.addProduct(product1);
 const product2 = new Product("Headphones", 100);
 order.addProduct(product2);
 
-console.log(`Общая стоимость заказа: ${order.getTotalPrice()}`);
+console.log(`Общая стоимость заказа: ${order.getTotalPrice()}\n`);
 
 //---------------------------------------------------------------//
 /* Задача необязательная для выполнения
@@ -171,42 +171,3 @@ student.setAverageGrade(85);
 student.displayInfo();
 
 //---------------------------------------------------------------//
-
-const dogImagesContainer = document.getElementById("dogImages");
-const apiUrl = "https://dog.ceo/api/breeds/image/random/10";
-
-async function fetchDogImages() {
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    return data.message;
-  } catch (error) {
-    console.error("Error fetching dog images:", error);
-    return [];
-  }
-}
-
-async function displayDogImages() {
-  const dogImages = await fetchDogImages();
-
-  for (const imageUrl of dogImages) {
-    const img = document.createElement("img");
-    img.src = imageUrl;
-    img.alt = "Dog Image";
-    dogImagesContainer.appendChild(img);
-  }
-}
-
-function clearDogImages() {
-  dogImagesContainer.innerHTML = "";
-}
-
-async function startDisplayingImages() {
-  for (let i = 0; i < 3; i++) {
-    await displayDogImages();
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    clearDogImages();
-  }
-}
-
-startDisplayingImages();
